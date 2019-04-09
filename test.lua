@@ -261,3 +261,103 @@ print(b)
 -- a, b = 10, 2  <--> a = 10; b = 2
 
 
+-- 可变参数
+-- function add( ... )
+-- local s = 0
+-- 	for i, v in pairs{...} do --> {...} 表示一个由所有变长参数构成的数组
+-- 		s = s + v
+-- 	end
+-- 	return s
+-- end
+
+-- print(add(3,4,5,6,7))
+
+
+-- 可变参数赋值给变量
+-- function average( ... )
+-- 	result = 0
+-- 	local arg = {...}  --> arg 为一个表，局部变量
+-- 	for i, v in pairs(arg) do
+-- 		result = result + v
+-- 	end
+-- 	print("总共传入 " .. #arg .. " 个数")
+-- 	return result/#arg
+-- end
+
+-- print("平均值为", average(10, 5, 3, 4, 5, 6))
+
+
+-- 获取可变参数的数量
+-- function average( ... )
+-- 	result = 0
+-- 	local arg = {...}
+-- 	for i, v in ipairs(arg) do
+-- 		result = result + v
+-- 	end
+-- 	print("总共传入 " .. select("#", ...) .. " 个数")
+-- 	return result/select("#", ...)
+-- end
+
+-- print("平均值为", average(10, 5, 3, 4, 5, 6))
+
+
+-- 固定参数+可变参数
+-- function fwrite(fmt, ... )  --> 固定参数fmt
+-- 	return io.write(string.format(fmt, ...))
+-- end
+
+-- fwrite("lalalal\n")  --> fmt = "lalalal",没有变长参数
+-- fwrite("%d%d\n", 1, 2)  --> fmt = "%d%d", 变长参数为 1 和 2
+
+
+
+-- select(i, ...)返回...中的第i个参数
+-- do
+-- 	function foo( ... )
+-- 		for i = 1, select('#', ...) do  -->获取参数总数
+-- 			local arg = select(i, ...)  -->读取参数
+-- 			print("arg", arg)
+-- 		end
+-- 	end
+
+-- 	foo(1, 2, 3, 4)
+-- end
+
+
+-- 字符串操作
+-- print(string.upper("abc"))  --> 转换为大写字母
+-- print(string.lower("ABC"))  --> 转换为小写字母
+-- print(string.gsub("abc", "a", "b", 1))  --> 替换字符串
+-- print(string.find("Hello World Lua", "Lua"))  --> 查找字符串并返回索引
+-- print(string.reverse("Lua"))  --> 字符串反转
+-- print(string.format("value is:%d", 4))  --> 格式化
+-- print(string.char(97, 98, 99, 100))  --> 整数转字符
+-- print(string.byte("ABCD", 4))  --> 字符转整数
+-- print(string.byte("ABCD"))  --> 字符转整数，默认转第一个字符
+-- print(string.len("abc"))  --> 计算字符串长度
+-- print(string.rep("abc", 2))  --> 字符串拷贝
+-- print("a" .. "b")  --> 字符串连接
+-- for word in string.gmatch("Hello Lua User", "%a+") do print(word) end  --> 字符串匹配，%a+表示整个字母，%a表示单个字符
+-- print(string.match("I have 2 question for you.", "%d+ %a+"))  --> 查找第一个匹配
+-- print(string.format("%d, %q", string.match("I have 2 question for you.", "(%d+) (%a+)")))
+-- date = 8; month = 4; year = 2019
+-- print(string.format("日期格式化 %02d/%02d/%03d", date, month, year))  --> 格式化
+
+-- print(string.format("%c", 83))  --> ASCII转化
+-- print(string.format("%+d", 17.0))
+-- print(string.format("%05d", 17))
+-- print(string.format("%o", 17))  --> 转为八进制
+-- -- print(string.format("%u", 3.14))  --> 转为无符号整数？
+-- print(string.format("%x", 13))  --> 转为十六进制小写字母
+-- print(string.format("%X", 13))  --> 转为十六进制大写字母
+-- print(string.format("%e", 1000))  --> 转为科学计数法格式小写字母e
+-- print(string.format("%E", 1000))  --> 转为科学计数法格式大写字母e
+-- print(string.format("%6.3f", 13))  --> 转为浮点数
+-- print(string.format("%q", "One\nTwo"))  -->转为Lua安全的格式
+-- print(string.format("%q", 1))  -->转为Lua安全的格式
+
+-- print(string.format("%s", "monkey"))
+-- print(string.format("%10s", "monkey"))
+-- print(string.format("%5.3s", "monkey"))
+
+-- print(string.gsub("hello, up-down!", "%A", "."))  --> 替换非字母的字符为.
