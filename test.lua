@@ -361,3 +361,205 @@ print(b)
 -- print(string.format("%5.3s", "monkey"))
 
 -- print(string.gsub("hello, up-down!", "%A", "."))  --> 替换非字母的字符为.
+
+
+-- 闭包函数
+-- array = {"Lua", "Tutorial"}
+
+-- function elementIterator(collection)
+-- 	local index = 0
+-- 	local count = #collection
+-- 	-- 闭包函数
+-- 	return function ()
+-- 		index = index + 1
+-- 		if index <= count
+-- 		then
+-- 			-- 返回迭代器的当前元素
+-- 			return collection[index]
+-- 		end
+-- 	end
+-- end
+
+-- for element in elementIterator(array)
+-- do
+-- 	print(element)
+-- end
+
+
+-- table连接
+-- fruits = {"banana", "orange", "apple"}
+-- print("连接后的字符串：", table.concat(fruits))  --> 返回table连接后的字符串
+-- print("连接后的字符串：", table.concat(fruits, ", ")) --> 指定连接字符
+-- print("连接后的字符串：", table.concat(fruits, ", ", 2, 3)) --> 指定索引来连接
+
+
+-- 插入和移除
+-- fruits = {"banana", "orange", "apple"}
+-- table.insert(fruits, "mango")  --> 在末尾插入 
+-- print("索引为4的元素为：", fruits[4])
+
+-- table.insert(fruits, 2, "grapes")
+-- print("索引为2的元素为：", fruits[2]) --> 在索引为2的键处插入
+
+-- print("最后一个元素为：", fruits[5])
+
+-- table.remove(fruits)
+-- print("移除后最后一个元素为：", fruits[5])
+
+
+-- table排序
+-- fruits = {"banana", "orange", "apple", "grapes"}
+-- print("排序前")
+-- for k, v in ipairs(fruits) do
+-- 	print(k, v)
+-- end
+
+-- table.sort(fruits)
+-- print("排序后")
+-- for k, v in ipairs(fruits) do
+-- 	print(k, v)
+-- end
+
+
+-- table最大值
+-- tbl = {1, 2, 3}
+-- print("最大值：", table.maxn(tbl)) --> maxn 5.2版本后已不存在
+
+
+-- test_module.lua 文件
+-- module 模块为module.lua
+-- require("module")
+
+-- print(module.constant)
+
+-- module.func3()
+
+
+-- 两表相加操作
+-- function table_maxn(t)
+-- 	local mn = 0
+-- 	for k, v in pairs(t) do
+-- 		if mn < k then
+-- 			mn = k
+-- 		end
+-- 	end
+-- 	return mn
+-- end
+
+-- mytable = setmetatable({1, 2, 3}, {
+-- 	__add = function(mytable, newtable)
+-- 		for i = 1, table_maxn(newtable) do
+-- 			table.insert(mytable, table_maxn(mytable) + 1, newtable[i])
+-- 		end
+-- 		return mytable
+-- 	end
+-- })
+
+-- secondtable = {4, 5, 6}
+
+-- mytable = mytable + secondtable
+-- 	for k, v in ipairs(mytable) do
+-- print(k, v)
+-- end
+
+
+-- __call元方法
+-- function table_maxn(t)
+-- 	local mn = 0
+-- 	for k, v in pairs(t) do
+-- 		if mn < k then
+-- 			mn = k
+-- 		end
+-- 	end
+-- 	return mn
+-- end
+
+-- mytable = setmetatable({10}, {
+-- 	__call = function (mytable, newtable)
+-- 		sum = 0
+-- 		for i = 1, table_maxn(mytable) do
+-- 			sum = sum + mytable[i]
+-- 		end
+-- 		for i = 1, table_maxn(newtable) do
+-- 			sum = sum + newtable[i]
+-- 		end
+-- 		return sum
+-- 	end
+-- })
+
+-- newtable = {10, 20, 30}
+-- print(mytable(newtable))
+
+
+-- __tostring元方法
+-- mytable = setmetatable({10, 20, 30}, {
+-- 	__tostring = function(mytable)
+-- 		sum = 0
+-- 		for k, v in pairs(mytable) do
+-- 			sum = sum + v
+-- 		end
+-- 		return "表所有元素的和为 " .. sum
+-- 	end
+-- })
+
+-- print(mytable)
+
+
+-- 简单模式文件读写
+-- file = io.open("hello.lua", "r")  --> 已只读方式打开文件
+-- io.input(file)  --> 设置默认输入文件为 hello.lua
+-- print(io.read())  --> 输出文件第一行
+-- io.close(file)  --> 关闭打开的文件
+
+-- file = io.open("hello.lua", "a")  --> 已附加的方式打开只写文件
+-- io.output(file)  --> 设置默认输出文件为 test.lua
+-- io.write("-- hello.lua 文件末尾注释")  --> 在问价最后一行添加Lua注释
+-- io.close(file)  --> 关闭打开的文件
+
+
+-- 完全模式文件读写
+-- file = io.open("hello.lua", "r")
+-- print(file:read())
+-- file:close()
+
+-- file = io.open("hello.lua", "a")
+-- file:write("-- 完全模式文件读写注释")
+-- file:close()
+
+
+-- seek方法
+-- file = io.open("hello.lua", "r")
+
+-- file:seek("end", -25)  --> 从文件的倒数第25个位置开始
+-- print(file:read("*a"))
+
+-- file:close()
+
+
+-- 错误处理
+-- local function add(a, b)
+-- 	assert(type(a) == "number", "a 不是一个数字")
+-- 	assert(type(b) == "number", "b 不是一个数字")
+-- 	return a + b
+-- end
+
+-- add(10)
+
+
+-- pcall
+-- pcall(function(i) print(i) end, 33)
+
+-- pcall(function(i) print(i) error('error..') end, 33)
+
+
+-- xpcall
+-- function myfunction()
+-- 	n = n/nil
+-- end
+
+-- function myerrorhandler(err)
+-- 	print("ERROR:", err)
+-- end
+
+-- status = xpcall(myfunction, myerrorhandler)
+-- print(status)
