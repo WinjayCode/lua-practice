@@ -572,3 +572,56 @@ print(b)
 -- print(collectgarbage("count"))
 -- print(collectgarbage("collect"))
 -- print(collectgarbage("count"))
+
+
+-- 面向对象
+-- Shape = {area = 0}  --> Meta class
+
+-- function Shape:new (o, side)  --> 基础类方法 new
+-- 	o = o or {}
+-- 	setmetatable(o, self)
+-- 	self.__index = self
+-- 	side = side or 0
+-- 	self.area = side * side
+-- 	return o
+-- end
+
+-- function Shape:printArea ()  --> 基础方法 printArea
+-- 	print("面积为 ", self.area)
+-- end
+
+-- myshape = Shape:new(nil, 10)
+-- myshape:printArea()
+
+-- Square = Shape:new()
+
+-- function Square:new (o, side)  --> 派生类方法
+-- 	o = o or Shape:new(o, side)
+-- 	setmetatable(o, self)
+-- 	self.__index = self
+-- 	return o
+-- end
+
+-- function Square:printArea()  --> 派生类方法
+-- 	print("正方形面积为 ", self.area)
+-- end
+
+-- mysquare = Square:new(nil, 20)
+-- mysquare:printArea()
+
+-- Rectangle = Shape:new()
+
+-- function Rectangle:new (o, length, breadth)
+-- 	o = o or Shape:new(o)
+-- 	setmetatable(o, self)
+-- 	self.__index = self
+-- 	self.area = length * breadth
+-- 	return o
+-- end
+
+-- function Rectangle:printArea()
+-- 	print("矩形面积为 ", self.area)
+-- end
+
+-- myrectangle = Rectangle:new(nil, 20, 30)
+-- myrectangle:printArea()
