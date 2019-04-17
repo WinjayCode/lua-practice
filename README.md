@@ -1,6 +1,7 @@
 # lua-practice
 
-lua practice project
+文章总结自：http://www.runoob.com/lua/lua-environment.html
+
 
 **Lua学习笔记**
 
